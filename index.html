@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Колесо - шиномонтаж за 40 минут</title>
+<meta name="description" content="Шиномонтаж «Колесо»: монтаж, балансировка и ремонт колёс. Запись онлайн, работаем без выходных.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== БРЕНД: замените значения, когда добавите материалы из brand-design/ ===== */
+:root{
+  --bg:#E4E3DF;          /* светлый серый, как фон OG */
+  --panel:#EEECE7;
+  --panel-2:#D8D7D2;
+  --line:#C4C2BC;
+  --ink:#1C1C1B;         /* резина */
+  --ink-dim:#5C5B57;
+  --signal:#D39B76;      /* персиково-терракотовый */
+  --teal:#2D6262;        /* глубокий бирюзовый */
+  --font-display:"Barlow Condensed",Impact,sans-serif;
+  --font-body:"Onest",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.wrap{width:min(1120px,100% - 40px);margin-inline:auto}
+h1,h2,h3{font-family:var(--font-display);font-weight:800;line-height:.95;letter-spacing:.01em;text-transform:uppercase}
+h2{font-size:clamp(2.4rem,6vw,4rem)}
+.section{padding-block:clamp(64px,9vw,120px)}
+section[id]{scroll-margin-top:76px}
+
+/* кнопки */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;padding:.95em 1.6em;font:700 1.05rem var(--font-display);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border:2px solid var(--ink);border-radius:12px;cursor:pointer;transition:background .2s,color .2s,transform .2s}
+.btn:hover{background:var(--ink);color:#fff}
+.btn:active{transform:translateY(1px)}
+.btn--main{background:var(--signal);border-color:var(--signal);color:var(--ink)}
+.btn--main:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn--tg{background:#229ED9;border-color:#229ED9;color:#fff}
+.btn--tg:hover{background:#1a86ba;border-color:#1a86ba}
+.btn--wa{background:#25D366;border-color:#25D366;color:#0b2e17}
+.btn--wa:hover{background:#1ebe5a;border-color:#1ebe5a;color:#0b2e17}
+
+/* шапка */
+header{position:sticky;top:0;z-index:20;background:rgba(228,227,223,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:68px}
+.logo{display:flex;align-items:center;gap:10px;font:800 1.9rem var(--font-display);text-transform:uppercase;text-decoration:none;letter-spacing:.04em}
+.logo svg{width:32px;height:32px}
+nav{display:flex;gap:8px}
+nav a{text-decoration:none;color:var(--ink);font-weight:500;font-size:.95rem;padding:.55em 1.1em;border:2px solid var(--line);border-radius:12px;transition:background .2s,color .2s,border-color .2s}
+nav a:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.bar .btn{padding:.6em 1.1em;font-size:.95rem}
+
+/* hero */
+.hero{position:relative;overflow:hidden;background:radial-gradient(ellipse 60% 70% at 100% 15%,rgba(211,155,118,.75),transparent 70%),radial-gradient(ellipse 55% 55% at 0% 100%,rgba(45,98,98,.35),transparent 70%);padding-block:clamp(48px,8vw,100px) clamp(64px,9vw,110px)}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(3.4rem,9.5vw,7.6rem)}
+.hero p.lead{margin-top:28px;max-width:34em;font-size:1.15rem;color:var(--ink-dim)}
+.hero .actions{margin-top:36px;display:flex;flex-wrap:wrap;gap:14px}
+.wheel{position:relative;justify-self:end;width:min(520px,100%);aspect-ratio:1;margin-right:-8%}
+.wheel svg{width:100%;height:100%;display:block;overflow:visible}
+#spin{transform-origin:200px 200px;will-change:transform}
+.chalkmark{position:absolute;left:2%;bottom:8%;font:700 1.15rem var(--font-display);letter-spacing:.08em;color:var(--ink);border:2px solid var(--ink);padding:.2em .7em;border-radius:8px;transform:rotate(-6deg);background:#fff}
+
+.stripe{height:14px;background:repeating-linear-gradient(90deg,var(--signal) 0 60px,var(--ink) 60px 100px)}
+
+/* цены */
+.prices{background:var(--panel)}
+.head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:48px}
+.head p{max-width:30em;color:var(--ink-dim)}
+table{width:100%;border-collapse:collapse}
+th,td{text-align:left;padding:20px 16px;border-bottom:1px solid var(--line)}
+thead th{font:700 1.05rem var(--font-display);letter-spacing:.08em;color:var(--ink-dim);border-bottom:2px solid var(--ink)}
+tbody th{font:700 1.7rem var(--font-display);letter-spacing:.02em}
+td{font-variant-numeric:tabular-nums;font-size:1.1rem}
+tbody tr:hover{background:var(--bg)}
+.note{margin-top:20px;color:var(--ink-dim);font-size:.95rem}
+
+/* этапы */
+.steps ol{list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:s}
+.steps li{counter-increment:s;padding:28px 24px 8px 0;border-top:3px solid var(--ink)}
+.steps li::before{content:counter(s);display:inline-block;font:800 3.2rem var(--font-display);line-height:1;padding:0 .18em;background:var(--signal)}
+.steps h3{font-size:1.7rem;margin:14px 0 8px}
+.steps p{color:var(--ink-dim);font-size:.98rem}
+
+/* преимущества */
+.why{background:var(--teal);color:#F3EEE8}
+.why h2{margin-bottom:48px}
+.why ul{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:40px 48px}
+.why h3{font-size:1.9rem;margin-bottom:8px}
+.why p{font-weight:500}
+
+/* FAQ */
+.faq .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px}
+details{border-bottom:1px solid var(--line);padding:22px 0}
+details:first-of-type{border-top:1px solid var(--line)}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;font:700 1.55rem var(--font-display);text-transform:uppercase;letter-spacing:.02em}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:2rem;line-height:1;transition:transform .25s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin-top:12px;color:var(--ink-dim);max-width:40em}
+
+/* запись */
+.book{background:var(--panel-2);text-align:center}
+.book h2{font-size:clamp(2.8rem,8vw,6rem)}
+.book p{margin:20px auto 36px;color:var(--ink-dim);max-width:30em}
+.book .actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+
+footer{padding-block:40px;color:var(--ink-dim);font-size:.95rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
+footer a{text-decoration:none}
+footer a:hover{color:var(--ink)}
+
+#toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,120px);background:var(--ink);color:#fff;padding:.8em 1.3em;border-radius:12px;font-weight:600;transition:transform .3s;z-index:50}
+#toast.show{transform:translate(-50%,0)}
+
+@media (max-width:860px){
+  .bar{flex-wrap:wrap;padding-block:10px}
+  nav{order:3;width:100%;overflow-x:auto;padding-bottom:4px}
+  nav a{white-space:nowrap}
+  .hero .wrap{grid-template-columns:1fr}
+  .wheel{justify-self:center;margin-right:0;width:min(380px,90%)}
+  .steps ol{grid-template-columns:1fr 1fr;gap:16px}
+  .why ul{grid-template-columns:1fr}
+  .faq .wrap{grid-template-columns:1fr;gap:32px}
+  th,td{padding:14px 8px}
+  tbody th{font-size:1.35rem}
+}
+@media (max-width:520px){
+  .steps ol{grid-template-columns:1fr}
+  .bar .btn{display:none}
+  th:nth-child(4),td:nth-child(4){display:none}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#top" aria-label="Колесо - на главную">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="#1C1C1B"/><circle cx="16" cy="16" r="8" fill="#D39B76"/><circle cx="16" cy="16" r="3" fill="#1C1C1B"/></svg>
+      Колесо
+    </a>
+    <nav aria-label="Основное меню">
+      <a href="#prices">Цены</a>
+      <a href="#steps">Как проходит</a>
+      <a href="#why">Почему мы</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+    <a class="btn btn--main" href="#book">Записаться</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Переобуем машину за 40 минут</h1>
+        <p class="lead">Шиномонтаж «Колесо»: монтаж, балансировка и ремонт колёс на профессиональном оборудовании. Записывайтесь на удобное время и не стойте в очереди.</p>
+        <div class="actions">
+          <!-- ЗАГЛУШКИ: подставьте свои ссылки -->
+          <a class="btn btn--main" href="#" data-stub="Запись онлайн">Записаться онлайн</a>
+          <a class="btn" href="#" data-stub="Телефон">Позвонить</a>
+        </div>
+      </div>
+
+      <div class="wheel" aria-hidden="true">
+        <svg viewBox="0 0 400 400">
+          <defs>
+            <radialGradient id="sidewall" cx="50%" cy="50%" r="50%">
+              <stop offset="60%" stop-color="#1f2023"/><stop offset="100%" stop-color="#0d0d0e"/>
+            </radialGradient>
+            <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#f4f5f7"/><stop offset=".45" stop-color="#b7bbc2"/><stop offset="1" stop-color="#7d828a"/>
+            </linearGradient>
+            <linearGradient id="metalDark" x1="1" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#d9dce0"/><stop offset="1" stop-color="#6b7078"/>
+            </linearGradient>
+            <radialGradient id="disc" cx="50%" cy="50%" r="50%">
+              <stop offset="55%" stop-color="#8a8e95"/><stop offset="100%" stop-color="#5b5f66"/>
+            </radialGradient>
+            <radialGradient id="shine" cx="32%" cy="26%" r="75%">
+              <stop offset="0" stop-color="#fff" stop-opacity=".32"/><stop offset=".35" stop-color="#fff" stop-opacity=".06"/><stop offset="1" stop-color="#000" stop-opacity=".38"/>
+            </radialGradient>
+            <filter id="drop" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="14" stdDeviation="10" flood-color="#000" flood-opacity=".3"/></filter>
+            <path id="textRing" d="M200,200 m-150,0 a150,150 0 1,1 300,0 a150,150 0 1,1 -300,0"/>
+          </defs>
+
+          <!-- шина: вращается -->
+          <g filter="url(#drop)"><circle cx="200" cy="200" r="194" fill="#0b0b0c"/></g>
+          <g id="spin">
+            <!-- протектор: два ряда блоков в шахматном порядке -->
+            <circle cx="200" cy="200" r="188" fill="none" stroke="#2c2d30" stroke-width="13" stroke-dasharray="15 6"/>
+            <circle cx="200" cy="200" r="175" fill="none" stroke="#2c2d30" stroke-width="13" stroke-dasharray="15 6" stroke-dashoffset="10"/>
+            <circle cx="200" cy="200" r="181.5" fill="none" stroke="#0b0b0c" stroke-width="2"/>
+            <!-- боковина -->
+            <circle cx="200" cy="200" r="167" fill="url(#sidewall)"/>
+            <circle cx="200" cy="200" r="160" fill="none" stroke="#2a2b2e" stroke-width="1.5"/>
+            <circle cx="200" cy="200" r="132" fill="none" stroke="#2a2b2e" stroke-width="1.5"/>
+            <text font-family="Barlow Condensed, Impact, sans-serif" font-weight="700" font-size="15" letter-spacing="3" fill="#8b8e94">
+              <textPath href="#textRing">КОЛЕСО  225/45 R17  94W  TUBELESS  ●  МАКС. ДАВЛЕНИЕ 3.5 БАР  ●  </textPath>
+            </text>
+            <!-- борт диска -->
+            <circle cx="200" cy="200" r="122" fill="url(#metal)"/>
+            <circle cx="200" cy="200" r="114" fill="#0e0e10"/>
+            <!-- тормозной диск -->
+            <circle cx="200" cy="200" r="106" fill="url(#disc)"/>
+            <circle cx="200" cy="200" r="96" fill="none" stroke="#4d5056" stroke-width="1.5"/>
+            <circle cx="200" cy="200" r="70" fill="none" stroke="#4d5056" stroke-width="1.5"/>
+            <circle cx="200" cy="200" r="60" fill="#0e0e10" opacity=".55"/>
+            <!-- спицы -->
+            <g transform="translate(200 200)" fill="url(#metal)" stroke="url(#metalDark)" stroke-width="2" stroke-linejoin="round">
+              <path id="spoke" d="M-9,-22 L-20,-112 Q0,-120 20,-112 L9,-22 Z"/>
+              <use href="#spoke" transform="rotate(72)"/>
+              <use href="#spoke" transform="rotate(144)"/>
+              <use href="#spoke" transform="rotate(216)"/>
+              <use href="#spoke" transform="rotate(288)"/>
+            </g>
+            <!-- ступица, болты -->
+            <circle cx="200" cy="200" r="30" fill="url(#metal)" stroke="#6b7078" stroke-width="2"/>
+            <g fill="#2a2c30">
+              <circle cx="200" cy="184" r="3.6"/><circle cx="215.2" cy="195" r="3.6"/><circle cx="209.4" cy="212.9" r="3.6"/><circle cx="190.6" cy="212.9" r="3.6"/><circle cx="184.8" cy="195" r="3.6"/>
+            </g>
+            <circle cx="200" cy="200" r="9" fill="#D39B76" stroke="#1C1C1B" stroke-width="1.5"/>
+            <!-- ниппель -->
+            <rect x="196" y="82" width="8" height="16" rx="2" fill="#20b15a"/>
+          </g>
+
+          <!-- суппорт: не вращается -->
+          <path d="M282,150 a102,102 0 0 1 0,100 l-22,-10 a78,78 0 0 0 0,-80 z" fill="#D39B76" stroke="#8a5a3a" stroke-width="1.5"/>
+          <!-- блик и объём поверх всего -->
+          <circle cx="200" cy="200" r="194" fill="url(#shine)"/>
+        </svg>
+        <span class="chalkmark">R17 · 225/45</span>
+      </div>
+    </div>
+  </section>
+  <div class="stripe" aria-hidden="true"></div>
+
+  <section class="section prices" id="prices">
+    <div class="wrap">
+      <div class="head">
+        <h2>Цены на работу</h2>
+        <p>Цена за комплект из четырёх колёс. В стоимость входят снятие, монтаж, балансировка и установка на автомобиль.</p>
+      </div>
+      <table>
+        <thead><tr><th>Радиус</th><th>Легковой</th><th>Кроссовер</th><th>Низкий профиль</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">R13-R15</th><td>1 600 ₽</td><td>-</td><td>-</td></tr>
+          <tr><th scope="row">R16-R17</th><td>2 000 ₽</td><td>2 400 ₽</td><td>2 800 ₽</td></tr>
+          <tr><th scope="row">R18-R19</th><td>2 600 ₽</td><td>3 000 ₽</td><td>3 400 ₽</td></tr>
+          <tr><th scope="row">R20-R22</th><td>-</td><td>3 800 ₽</td><td>4 400 ₽</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Цены ориентировочные, замените на свои. Ремонт прокола и сезонное хранение считаем отдельно.</p>
+    </div>
+  </section>
+
+  <section class="section steps" id="steps">
+    <div class="wrap">
+      <div class="head"><h2>Как проходит визит</h2></div>
+      <ol>
+        <li><h3>Запись</h3><p>Выбираете время онлайн или по телефону. Приезжаете к назначенному часу.</p></li>
+        <li><h3>Осмотр</h3><p>Мастер проверяет диски, шины и датчики давления, называет итоговую цену.</p></li>
+        <li><h3>Работа</h3><p>Снимаем колёса, меняем резину, балансируем на стенде.</p></li>
+        <li><h3>Выдача</h3><p>Затягиваем болты динамометрическим ключом и отдаём машину.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section why" id="why">
+    <div class="wrap">
+      <h2>Почему к нам возвращаются</h2>
+      <ul>
+        <li><h3>Без очереди</h3><p>Работаем по записи, поэтому вы ждёте не дольше сорока минут.</p></li>
+        <li><h3>Точная балансировка</h3><p>Современные стенды и опытные мастера. Руль не бьёт на скорости.</p></li>
+        <li><h3>Гарантия на работу</h3><p>Если что-то не так после визита, исправим бесплатно.</p></li>
+        <li><h3>Без выходных</h3><p>Открыты каждый день с 8:00 до 21:00, в сезон продлеваем часы.</p></li>
+        <li><h3>Честная цена</h3><p>Называем стоимость до начала работ и не добавляем лишнего.</p></li>
+        <li><h3>Хранение шин</h3><p>Оставьте комплект у нас на сезон, привезём к вашему следующему визиту.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section faq" id="faq">
+    <div class="wrap">
+      <h2>Частые вопросы</h2>
+      <div>
+        <details><summary>Когда менять резину на зимнюю?</summary><p>Когда среднесуточная температура держится ниже +7 °C. Обычно это конец сентября или октябрь.</p></details>
+        <details><summary>Сколько длится шиномонтаж?</summary><p>Комплект из четырёх колёс займёт около 40 минут. Если нужен ремонт, время немного увеличится.</p></details>
+        <details><summary>Можно ли приехать без записи?</summary><p>Можно, но в сезон возможна очередь. Запись гарантирует, что мастер будет свободен к вашему приезду.</p></details>
+        <details><summary>Нужно ли снимать колёса с машины заранее?</summary><p>Нет, мы снимем и поставим их сами. Если привозите колёса отдельно, работа обойдётся дешевле.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section book" id="book">
+    <div class="wrap">
+      <h2>Запишитесь в «Колесо»</h2>
+      <p>Выберите удобный способ. Ответим быстро и подтвердим время.</p>
+      <div class="actions">
+        <!-- ЗАГЛУШКИ: подставьте свои ссылки -->
+        <a class="btn btn--main" href="#" data-stub="Запись онлайн">Записаться онлайн</a>
+        <a class="btn" href="#" data-stub="Телефон">Позвонить</a>
+        <a class="btn btn--tg" href="#" data-stub="Telegram">Написать в Telegram</a>
+        <a class="btn btn--wa" href="#" data-stub="WhatsApp">Написать в WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Шиномонтаж «Колесо». Ежедневно с 8:00 до 21:00</span>
+    <span>
+      <a href="#" data-stub="Адрес на карте">Адрес: ул. Примерная, 1</a> ·
+      <a href="#" data-stub="Телефон">+7 (000) 000-00-00</a>
+    </span>
+  </div>
+</footer>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* Заглушки: пока в href стоит "#", показываем подсказку. Когда подставите настоящую ссылку - работает как обычно. */
+const toast=document.getElementById('toast');let t;
+document.querySelectorAll('a[data-stub]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    if(a.getAttribute('href')!=='#')return;
+    e.preventDefault();
+    toast.textContent='Здесь будет ссылка: '+a.dataset.stub;
+    toast.classList.add('show');clearTimeout(t);
+    t=setTimeout(()=>toast.classList.remove('show'),2200);
+  });
+});
+/* Колесо крутится вместе с прокруткой, блик и суппорт остаются на месте */
+const spin=document.getElementById('spin');
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+  let ticking=false;
+  addEventListener('scroll',()=>{
+    if(ticking)return;ticking=true;
+    requestAnimationFrame(()=>{spin.style.transform='rotate('+(scrollY*0.25)+'deg)';ticking=false;});
+  },{passive:true});
+}
+</script>
+</body>
+</html>
